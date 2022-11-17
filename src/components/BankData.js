@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import axios from 'axios';
-import DCForm from './DCForm';
 
 class BankData extends Component {
   constructor(props) {
@@ -57,13 +56,14 @@ class BankData extends Component {
   }
 
   render() {
-      <div className="container">
-        <div className="search">
-            <h3>change view:</h3>
-            <input type="text" value={this.state.selected} onChange={this.handleInputChange} placeholder="Enter view:"/>
-              <button onClick={this.handleViewChange}>Change</button>
-        </div>
-        { this.state.bval
+
+          <div className="container">
+            <div className="search">
+              <h3>View change:</h3>
+              <input type="text" value={this.state.selected} onChange={this.handleInputChange} placeholder="Enter view"/>
+              <button onClick={this.handleViewChange}>change</button>
+            </div>
+            { this.state.bval
             ? <div>
                 return (<div>{this.debitsView()}</div>);
                 </div>
@@ -71,7 +71,8 @@ class BankData extends Component {
                 return (<div>{this.creditsView()}</div>);
                 </div>
             }
-      </div>
+          </div>
+    }
 }
 
 export default BankData;
