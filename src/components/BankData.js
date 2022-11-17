@@ -9,7 +9,7 @@ class BankData extends Component {
       selected: "",
       debits: [],
       credits: [],
-      bval: false;
+      bval: false,
     }
   }
 
