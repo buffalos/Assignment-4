@@ -8,26 +8,32 @@ class BankData extends Component {
       selected: "",
       debits: [],
       credits: [],
+      bval: false,
     }
   }
 
   handleInputChange = (event) => {
-        this.setState({selected: event.target.value});
+      this.setState({selected: event.target.value});
     }
 
-  async componentDidMount() {
+  handleViewChange = async () => {
 	  let viewname = this.state.selected;
 	  let link = "https://moj-api.herokuapp.com/" + viewname;
-	  let response = await axios.get(link);
-	  if(viewname === "debits"){
-		  let debits = response.data;
-	      this.setState({debits: debits});
-	  }
-	  if(viewname === "credits"){
-		  let credits = response.data;
-	      this.setState({credits: credits});
-	  }
-
+      try {
+          let response = await axios.get(link);
+          if(viewname === "debits"){
+    		  let debits = response.data;
+              this.setState({bval: true});
+    	      this.setState({debits: debits});
+    	  }
+    	  if(viewname === "credits"){
+    		  let credits = response.data;
+              this.setState({bval: false});
+    	      this.setState({credits: credits});
+    	  }
+      } catch (e) {
+          console.log("sorry"); //Not Found
+    }
   }
 
   debitsView = () => {
@@ -47,13 +53,25 @@ class BankData extends Component {
   }
 
   render() {
-	<input type="text" value={this.state.viewText} onChange={this.handleInputChange} placeholder="Enter view name"/>
-    if(this.state.selected === "debits"){
-      return (<div>{this.debitsView()}</div>);
-    }
-	if(this.state.selected === "credits"){
-      return (<div>{this.creditsView()}</div>);
-    }
+      return (
+        <div className="container">
+          <div className="search">
+            <h3>Change view:</h3>
+            <input type="text" value={this.state.selected} onChange={this.handleInputChange} placeholder="What view?"/>
+            <button onClick={this.handleViewChange}>Change</button>
+          </div>
+          { this.state.bval
+          ? <div>
+              <h3>{this.state.selected}</h3>
+                  {this.debitsView()}
+              </div>
+          : <div>
+              <h3>{this.state.selected}</h3>
+                  {this.creditsView()}
+              </div>
+          }
+        </div>
+      );
   }
 }
 
