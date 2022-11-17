@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Clock user={this.state.user} />
+        <Time user={this.state.user} />
         <h3>Customize your profile!</h3>
         <NameChange changeUser={this.changeUser} />
         <BankData />
