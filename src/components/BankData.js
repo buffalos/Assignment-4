@@ -32,10 +32,7 @@ class BankData extends Component {
     	      this.setState({credits: credits});
     	  }
       } catch (e) {
-          if (error.response) {
-            console.log(error.response.data); //Not Found
-            console.log(error.response.status); //404
-        }
+          console.log("sorry"); //Not Found
     }
   }
 
@@ -56,23 +53,26 @@ class BankData extends Component {
   }
 
   render() {
-
-          <div className="container">
-            <div className="search">
-              <h3>View change:</h3>
-              <input type="text" value={this.state.selected} onChange={this.handleInputChange} placeholder="Enter view"/>
-              <button onClick={this.handleViewChange}>change</button>
-            </div>
-            { this.state.bval
-            ? <div>
-                return (<div>{this.debitsView()}</div>);
-                </div>
-            : <div>
-                return (<div>{this.creditsView()}</div>);
-                </div>
-            }
+      return (
+        <div className="container">
+          <div className="search">
+            <h3>Change view:</h3>
+            <input type="text" value={this.state.selected} onChange={this.handleInputChange} placeholder="What view?"/>
+            <button onClick={this.handleViewChange}>Change</button>
           </div>
-    }
+          { this.state.bval
+          ? <div>
+              <h3>{this.state.selected}</h3>
+                  {this.debitsView()}
+              </div>
+          : <div>
+              <h3>{this.state.selected}</h3>
+                  {this.creditsView()}
+              </div>
+          }
+        </div>
+      );
+  }
 }
 
 export default BankData;
