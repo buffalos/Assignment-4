@@ -1,6 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import './components/CurrentTime.js';
+import {Component} from 'react'
+
+import Time from './components/CurrentTime';
+import BankData from './components/BankData'
+
+import NameChange from './components/NameChange'
 
 class App extends Component {
   constructor(props) {
@@ -12,16 +15,16 @@ class App extends Component {
   changeUser = (e) => {
     e.preventDefault();
     const currUser = e.target[0].value;
+    //console.log(currUser);
     this.setState({user: currUser})
   }
   render() {
     return (
       <div>
-        <Time user={this.state.user} />
-        <h3></h3>
+        <Clock user={this.state.user} />
+        <h3>Customize your profile!</h3>
         <NameChange changeUser={this.changeUser} />
-        <Credits />
-        <Debits />
+        <BankData />
       </div>
     );
   }
