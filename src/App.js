@@ -11,13 +11,16 @@ class App extends Component {
     this.state = {
       user: "Guest",
       bg: 'white',
+      txt: 'black',
     }
   }
 
   callbackB = (passedbg) =>{
       this.setState({bg: passedbg});
   }
-
+  callbackD = (passedtxt) =>{
+      this.setState({txt: passedtxt});
+  }
   changeUser = (e) => {
     e.preventDefault();
     const currUser = e.target[0].value;
@@ -26,10 +29,11 @@ class App extends Component {
   }
   render() {
       document.body.style.backgroundColor = this.state.bg;
+      document.body.style.color = this.state.txt;
       //console.log(document.body.style.background);
     return (
       <div>
-        <CustomizeDisplay callbackA={this.callbackB}/>
+        <CustomizeDisplay callbackA={this.callbackB} callbackC={this.callbackD}/>
         <Time user={this.state.user} />
         <h3>Customize your profile!</h3>
         <NameChange changeUser={this.changeUser} />
