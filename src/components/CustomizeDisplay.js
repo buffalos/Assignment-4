@@ -5,52 +5,51 @@ class CustomizeDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      styles: {
+       backgroundColor: 'white',
+       color: 'black'
+    },
       display: false,
-      bg: 'white',
-      text: 'black',
     }
   }
 
   handleDisplayClick = (event) => {
-      if(this.state.display === 'true'){
-          this.setState({display: 'false'});
+      if(this.state.display === true){
+          this.setState({display: false});
       }
-      if(this.state.display === 'false'){
-          this.setState({display: 'true'});
+      if(this.state.display === false){
+          this.setState({display: true});
       }
   }
 
-  handleBGInputChange = (event) => {
-      this.setState({bg: event.target.value});
+  BG_handleInputChange = (event) => {
+      this.setState({styles:{backgroundColor: event.target.value}});
     }
 
 
-  getBGInput = () => {
+  BG_getInput = () => {
     return (
         <div>
-        <input type="text" value={this.state.bg} onChange={this.handleBGInputChange} placeholder="What color?"/>
-            <button onClick={this.handleBGChange}>Change</button>
+        <input type="text" value={this.state.styles.backgroundColor} onChange={this.BG_handleInputChange} placeholder="What color?"/>
+            <button onClick={this.BG_handleChange}>Change</button>
         </div>
     );
   }
 
-  handleBGChange = () => {
-      const { bg } = this.state;
-      return (
-          <div style={{
-          backgroundColor: '${bg}',
-        }}/>
-      );
-    }
+  BG_handleChange = () => {
+      let passedbg = this.state.styles.backgroundColor;
+      this.props.callbackA(passedbg);
+      console.log(passedbg);
+}
 
-  displayForm = () => {
+  render() {
       return (
+         <div>
           { this.state.display
           ? <div>
-              <h4>Change Background Color</h4>
-                  {this.getBGInput()}
-              <h4>Change Text Color</h4>
-                 // {this.changeText()}
+              <h6>Change Background Color</h6>
+                  {this.BG_getInput()}
+              <h6>Change Text Color</h6>
             <button onClick={this.handleDisplayClick}>Done</button>
               </div>
           : <div>
@@ -58,6 +57,9 @@ class CustomizeDisplay extends Component {
               <button onClick={this.handleDisplayClick}>Change</button>
           </div>
           }
+         </div>
       );
   }
 }
+
+export default CustomizeDisplay
