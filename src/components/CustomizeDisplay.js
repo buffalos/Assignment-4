@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import Background from './Background.js'
+//import Background from './Background.js'
 
 class CustomizeDisplay extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class CustomizeDisplay extends Component {
   BG_getInput = () => {
     return (
         <div>
-        <input type="text" value={this.state.styles.backgroundColor} onChange={this.BG_handleInputChange} placeholder="What color?"/>
+        <input type="text" value={this.state.styles.backgroundColor} onChange={this.BG_handleInputChange} placeholder="Enter a color?"/>
             <button onClick={this.BG_handleChange}>Change</button>
         </div>
     );
@@ -43,7 +43,7 @@ class CustomizeDisplay extends Component {
   TXT_getInput = () => {
     return (
         <div>
-        <input type="text" value={this.state.styles.color} onChange={this.TXT_handleInputChange} placeholder="What color?"/>
+        <input type="text" value={this.state.styles.color} onChange={this.TXT_handleInputChange} placeholder="Enter a color"/>
             <button onClick={this.TXT_handleChange}>Change</button>
         </div>
     );
@@ -66,15 +66,15 @@ class CustomizeDisplay extends Component {
          <div>
           { this.state.display
           ? <div>
-              <h6>Change Background Color</h6>
+              <h6>Background Color</h6>
                   {this.BG_getInput()}
-              <h6>Change Text Color</h6>
+              <h6>Text Color</h6>
                 {this.TXT_getInput()}
             <button onClick={this.handleDisplayClick}>Done</button>
               </div>
           : <div>
               <h4>Customize?</h4>
-              <button onClick={this.handleDisplayClick}>Change</button>
+              <button onClick={this.handleDisplayClick}>Customize</button>
           </div>
           }
          </div>

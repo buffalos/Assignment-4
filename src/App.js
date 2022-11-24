@@ -33,9 +33,9 @@ class App extends Component {
       //console.log(document.body.style.background);
     return (
       <div>
-        <CustomizeDisplay callbackA={this.callbackB} callbackC={this.callbackD}/>
         <Time user={this.state.user} />
         <h3>Customize your profile!</h3>
+        <CustomizeDisplay callbackA={this.callbackB} callbackC={this.callbackD}/>
         <NameChange changeUser={this.changeUser} />
         <BankData />
         </div>
