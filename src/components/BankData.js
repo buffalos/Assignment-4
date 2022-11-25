@@ -56,8 +56,8 @@ class BankData extends Component {
       return (
         <div className="container">
           <div className="search">
-            <h3>Change view:</h3>
-            <input type="text" value={this.state.selected} onChange={this.handleInputChange} placeholder="What view?"/>
+            <h3>Debits or Credits?</h3>
+            <input type="text" value={this.state.selected} onChange={this.handleInputChange} placeholder="Enter a view"/>
             <button onClick={this.handleViewChange}>Change</button>
           </div>
           { this.state.bval

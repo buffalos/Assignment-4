@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import Background from './Background.js'
+//import Background from './Background.js'
 
 class CustomizeDisplay extends Component {
   constructor(props) {
@@ -7,7 +7,8 @@ class CustomizeDisplay extends Component {
     this.state = {
       styles: {
        backgroundColor: 'white',
-       color: 'black'
+       color: 'black',
+       user: 'Guest'
     },
       display: false,
     }
@@ -29,12 +30,14 @@ class CustomizeDisplay extends Component {
   TXT_handleInputChange = (event) => {
       this.setState({styles:{color: event.target.value}});
     }
-
+    U_handleInputChange = (event) => {
+        this.setState({user: event.target.value});
+      }
 
   BG_getInput = () => {
     return (
         <div>
-        <input type="text" value={this.state.styles.backgroundColor} onChange={this.BG_handleInputChange} placeholder="What color?"/>
+        <input type="text" value={this.state.styles.backgroundColor} onChange={this.BG_handleInputChange} placeholder="Enter a color?"/>
             <button onClick={this.BG_handleChange}>Change</button>
         </div>
     );
@@ -43,12 +46,19 @@ class CustomizeDisplay extends Component {
   TXT_getInput = () => {
     return (
         <div>
-        <input type="text" value={this.state.styles.color} onChange={this.TXT_handleInputChange} placeholder="What color?"/>
+        <input type="text" value={this.state.styles.color} onChange={this.TXT_handleInputChange} placeholder="Enter a color"/>
             <button onClick={this.TXT_handleChange}>Change</button>
         </div>
     );
   }
-
+  U_getInput = () => {
+    return (
+        <div>
+        <input type="text" id="user" value={this.state.user} onChange={this.U_handleInputChange} placeholder="Enter a color?"/>
+            <button onClick={this.U_handleChange}>Change</button>
+        </div>
+    );
+  }
   BG_handleChange = () => {
       let passedbg = this.state.styles.backgroundColor;
       this.props.callbackA(passedbg);
@@ -60,21 +70,27 @@ class CustomizeDisplay extends Component {
         this.props.callbackC(passedtxt);
         console.log(passedtxt);
     }
-
+    U_handleChange = () => {
+        let passeduser = this.state.user;
+        this.props.changeUser(passeduser);
+        console.log(passeduser);
+    }
   render() {
       return (
          <div>
           { this.state.display
           ? <div>
-              <h6>Change Background Color</h6>
+              <h6>Background Color</h6>
                   {this.BG_getInput()}
-              <h6>Change Text Color</h6>
+              <h6>Text Color</h6>
                 {this.TXT_getInput()}
+                <h6>User changer</h6>
+                  {this.U_getInput()}
             <button onClick={this.handleDisplayClick}>Done</button>
               </div>
           : <div>
               <h4>Customize?</h4>
-              <button onClick={this.handleDisplayClick}>Change</button>
+              <button onClick={this.handleDisplayClick}>Customize</button>
           </div>
           }
          </div>
