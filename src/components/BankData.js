@@ -32,7 +32,7 @@ class BankData extends Component {
     	      this.setState({credits: credits});
     	  }
       } catch (e) {
-          console.log("sorry"); //Not Found
+          console.log("sorry!"); //Not Found
     }
   }
 
@@ -53,20 +53,22 @@ class BankData extends Component {
   }
 
   render() {
+      const dcstyle = {
+          padding: "1px",
+          textAlign: "center",
+      }
       return (
         <div className="container">
-          <div className="search">
-            <h3>Debits or Credits?</h3>
+          <div  style={dcstyle } className="search">
+            <h3> Debits or Credits? </h3>
             <input type="text" value={this.state.selected} onChange={this.handleInputChange} placeholder="Enter a view"/>
             <button onClick={this.handleViewChange}>Change</button>
           </div>
           { this.state.bval
-          ? <div>
-              <h3>{this.state.selected}</h3>
+          ? <div  style={dcstyle}>
                   {this.debitsView()}
               </div>
-          : <div>
-              <h3>{this.state.selected}</h3>
+          : <div style={dcstyle}>
                   {this.creditsView()}
               </div>
           }
