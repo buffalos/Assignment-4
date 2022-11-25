@@ -7,7 +7,8 @@ class CustomizeDisplay extends Component {
     this.state = {
       styles: {
        backgroundColor: 'white',
-       color: 'black'
+       color: 'black',
+       user: 'Guest'
     },
       display: false,
     }
@@ -29,7 +30,9 @@ class CustomizeDisplay extends Component {
   TXT_handleInputChange = (event) => {
       this.setState({styles:{color: event.target.value}});
     }
-
+    U_handleInputChange = (event) => {
+        this.setState({user: event.target.value});
+      }
 
   BG_getInput = () => {
     return (
@@ -48,7 +51,14 @@ class CustomizeDisplay extends Component {
         </div>
     );
   }
-
+  U_getInput = () => {
+    return (
+        <div>
+        <input type="text" id="user" value={this.state.user} onChange={this.U_handleInputChange} placeholder="Enter a color?"/>
+            <button onClick={this.U_handleChange}>Change</button>
+        </div>
+    );
+  }
   BG_handleChange = () => {
       let passedbg = this.state.styles.backgroundColor;
       this.props.callbackA(passedbg);
@@ -60,7 +70,11 @@ class CustomizeDisplay extends Component {
         this.props.callbackC(passedtxt);
         console.log(passedtxt);
     }
-
+    U_handleChange = () => {
+        let passeduser = this.state.user;
+        this.props.changeUser(passeduser);
+        console.log(passeduser);
+    }
   render() {
       return (
          <div>
@@ -70,6 +84,8 @@ class CustomizeDisplay extends Component {
                   {this.BG_getInput()}
               <h6>Text Color</h6>
                 {this.TXT_getInput()}
+                <h6>User changer</h6>
+                  {this.U_getInput()}
             <button onClick={this.handleDisplayClick}>Done</button>
               </div>
           : <div>
