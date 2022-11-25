@@ -6,8 +6,8 @@ class CustomizeDisplay extends Component {
     super(props);
     this.state = {
       styles: {
-       backgroundColor: 'white',
-       color: 'black',
+       backgroundColor: '',
+       color: '',
        user: 'Guest'
     },
       display: false,
@@ -37,7 +37,7 @@ class CustomizeDisplay extends Component {
   BG_getInput = () => {
     return (
         <div>
-        <input type="text" value={this.state.styles.backgroundColor} onChange={this.BG_handleInputChange} placeholder="Enter a color?"/>
+        <input type="text" value={this.state.styles.backgroundColor} onChange={this.BG_handleInputChange} placeholder="Enter a color"/>
             <button onClick={this.BG_handleChange}>Change</button>
         </div>
     );
@@ -54,7 +54,7 @@ class CustomizeDisplay extends Component {
   U_getInput = () => {
     return (
         <div>
-        <input type="text" id="user" value={this.state.user} onChange={this.U_handleInputChange} placeholder="Enter a color?"/>
+        <input type="text" id="user" value={this.state.user} onChange={this.U_handleInputChange} placeholder="Enter a name"/>
             <button onClick={this.U_handleChange}>Change</button>
         </div>
     );
@@ -76,20 +76,26 @@ class CustomizeDisplay extends Component {
         console.log(passeduser);
     }
   render() {
+      const cfstyle = {
+          margin: '30px',
+          fontSize: "15px",
+
+      }
       return (
          <div>
           { this.state.display
           ? <div>
-              <h6>Background Color</h6>
+                <div style={cfstyle}>
+              <span>Background Color</span>
                   {this.BG_getInput()}
-              <h6>Text Color</h6>
+              <span>Text Color</span>
                 {this.TXT_getInput()}
-                <h6>User changer</h6>
+              <span>User changer</span>
                   {this.U_getInput()}
+            </div>
             <button onClick={this.handleDisplayClick}>Done</button>
               </div>
           : <div>
-              <h4>Customize?</h4>
               <button onClick={this.handleDisplayClick}>Customize</button>
           </div>
           }

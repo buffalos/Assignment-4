@@ -25,8 +25,12 @@ class Time extends Component {
   }
 
   render() {
+      const mystyle = {
+          padding: "10px",
+          textAlign: "center"
+      }
     return (
-      <div>
+      <div style={mystyle} >
         <h1>Hello, {this.props.user}!</h1>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>

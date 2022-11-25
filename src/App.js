@@ -27,15 +27,21 @@ class App extends Component {
     this.setState({user:currUser})
   }
   render() {
+      const titlestyle = {
+          fontSize: '18px',
+          display: "inline-block",
+          fontWeight: "bold"
+      }
       document.body.style.backgroundColor = this.state.bg;
       document.body.style.color = this.state.txt;
-      //console.log(document.body.style.background);
     return (
       <div>
         <Time user={this.state.user} />
-        <h3>Customize your profile!</h3>
-        <CustomizeDisplay callbackA={this.callbackB} callbackC={this.callbackD} changeUser={this.callbackF}/>
         <BankData />
+        <span style={titlestyle}>Customize your profile!</span>
+        <div className="cf" >
+        <CustomizeDisplay callbackA={this.callbackB} callbackC={this.callbackD} changeUser={this.callbackF}/>
+            </div>
         </div>
     );
   }
