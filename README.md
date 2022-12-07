@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+## Assignment using React that displays users bank information from API endpoints, and allows for UI customization.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
